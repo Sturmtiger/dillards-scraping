@@ -6,6 +6,10 @@ Note: Remember to configure the django environ in the scrapy_app settings accord
 
 Do not forget `pip install -r requirements.txt`
 
+The project also has fixtures with parsed products(3500 items):
+
+`./manage.py loaddata dillards_app/fixtures/parsed.products.json` (use that command to load the data in the Model)
+
 # Project run
 1. `scrapy crawl dillards`
 2. `celery -A dillards_project.celery_app worker -l INFO`
