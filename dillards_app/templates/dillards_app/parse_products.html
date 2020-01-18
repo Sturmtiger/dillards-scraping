@@ -1,0 +1,27 @@
+{% extends 'dillards_app/base.html' %}
+{% block title %}Parse products{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="form-group text-center mt-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <p>Click the button to parse products data from
+                        <a href="https://www.dillards.com/" target="_blank">dillards.com</a>
+                    </p>
+                    <button type="submit" class="btn btn-primary">Parse products data</button>
+                </form>
+                {% if messages %}
+                <div class="alert alert-info mt-3" role="alert">
+                    {% for message in messages %}
+                    <p>{{ message|safe }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
