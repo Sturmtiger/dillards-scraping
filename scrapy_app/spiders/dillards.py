@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 import scrapy
+from scrapy import signals
 from scrapy_redis.spiders import RedisSpider
 from ..items import ScrapyAppItem
 
 
-# class DillardsSpider(scrapy.Spider):
 class DillardsSpider(RedisSpider):
     name = 'dillards'
     allowed_domains = ['dillards.com']
-    # start_urls = ['https://www.dillards.com/c/men']
 
     def get_product_detail(self, response):
         """Collects product information."""
