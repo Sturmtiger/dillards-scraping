@@ -9,12 +9,13 @@ from dillards_app.tasks import save_products_to_db
 
 
 class ScrapyAppPipeline(object):
-    def __init__(self):
+    def __init__(self, crawler):
+        self.crawler = crawler
         self.items = list()
 
     def process_item(self, item, spider):
         self.items.append(item._values)
-        if len(self.items) >= 500:
+        if len(self.items) >= 200:
             save_products_to_db.delay(self.items)
             self.items.clear()
         return item

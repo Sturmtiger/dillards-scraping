@@ -2,6 +2,8 @@
 hw (dillards.com)
 
 # How to work with the project
+I used Python version 3.6.9
+
 Note: Remember to configure the django environ in the scrapy_app settings according to the path on your computer.
 
 Do not forget `pip install -r requirements.txt`

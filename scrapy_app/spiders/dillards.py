@@ -11,6 +11,7 @@ class DillardsSpider(RedisSpider):
     # start_urls = ['https://www.dillards.com/c/men']
 
     def get_product_detail(self, response):
+        """Collects product information."""
         url = response.url
         categories = ', '.join(response.meta['categories'])
         price = ''.join(response.xpath(
@@ -45,6 +46,7 @@ class DillardsSpider(RedisSpider):
         yield items
 
     def get_product_data_from_pages(self, response):
+        """Collects a list of product URLs on the page."""
         products = response.xpath(
             '//div/div[contains(@class, "result-tile")]/div[contains(@class, "result-tile-below")]/a/@href'
         ).extract()
@@ -73,5 +75,5 @@ class DillardsSpider(RedisSpider):
             '//div[contains(@class, "CategoryNavigation")]/div/ul/li[position() >= 2 and position() <= 4]/a/@href'
         ).extract()
 
-        for url in categories:
+        for url in categories[:1]:
             yield scrapy.Request(url=response.urljoin(url), callback=self.get_product_data_from_pages)
